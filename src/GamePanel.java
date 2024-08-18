@@ -1,7 +1,6 @@
-import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends ImagePanel {
     final int originalTileSize=16;
     final int scale=3;
     final int tileSize=originalTileSize*scale;

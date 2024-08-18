@@ -5,10 +5,31 @@ public class Character {
     private BigDecimal money;
     private int age;
     private Education education;
-    private char gender;
-    private String name;
-    private double happiness;
+    private final char gender;
+    private final String name;
     private BufferedImage image;
+    private Character spouse;
+
+    public Character(BigDecimal money, int age, Education education, char gender, String name, BufferedImage image,Character spouse) {
+        this.money = money;
+        if(age<18) {
+            age=18;
+        }
+        this.age = age;
+        this.education = education;
+        this.gender = gender;
+        this.name = name;
+        this.image = image;
+        this.spouse=spouse;
+    }
+
+    public Character(BigDecimal money, String name, BufferedImage image) {
+        this.money = money;
+        this.gender = (int)(Math.random()*2)==1?'F':'M';
+        this.name = name;
+        this.image = image;
+    }
+
     public void defineImg() {
         if(gender=='F'){
 
@@ -22,55 +43,8 @@ public class Character {
         return money;
     }
 
-    public void setMoney(BigDecimal money) {
-        this.money = money;
-    }
-
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Education getEducation() {
-        return education;
-    }
-
-    public void setEducation(Education education) {
-        this.education = education;
-    }
-
-    public char getGender() {
-        return gender;
-    }
-
-    public void setGender(char gender) {
-        this.gender = gender;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getHappiness() {
-        return happiness;
-    }
-
-    public void setHappiness(double happiness) {
-        this.happiness = happiness;
-    }
-
-    public BufferedImage getImage() {
-        return image;
-    }
-
-    public void setImage(BufferedImage image) {
-        this.image = image;
-    }
 }
