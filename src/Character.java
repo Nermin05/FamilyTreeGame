@@ -29,7 +29,6 @@ public class Character {
         this.name = name;
         this.image = image;
     }
-
     public void defineImg() {
         if(gender=='F'){
 
@@ -45,6 +44,24 @@ public class Character {
 
     public int getAge() {
         return age;
+    }
+
+private int counter=0;
+    public void aMonthPasses() {
+
+        if (education == null) {
+            if (age > 6 && age < 17) {
+                //ask user
+                money.add(BigDecimal.valueOf(education.getPay()));
+            }
+        }
+        ProjectForSwing.totalPrice.add(money);
+        counter++;
+        if(counter==12) {
+            age++;
+            counter=0;
+        }
+
     }
 
 }
