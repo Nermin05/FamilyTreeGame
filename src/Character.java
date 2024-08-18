@@ -9,6 +9,7 @@ public class Character {
     private String name;
     private double happiness;
     private BufferedImage image;
+    private boolean changedImg;
     public void defineImg() {
         if(gender=='F'){
 
@@ -73,4 +74,30 @@ public class Character {
     public void setImage(BufferedImage image) {
         this.image = image;
     }
+
+    public boolean isChangedImg() {
+        return changedImg;
+    }
+
+    public void setChangedImg(boolean changedImg) {
+        this.changedImg = changedImg;
+    }
+private int counter=0;
+    public void aMonthPasses() {
+
+        if (education == null) {
+            if (age > 6 && age < 17) {
+                //ask user
+                money.add(BigDecimal.valueOf(education.getPay()));
+            }
+        }
+        ProjectForSwing.totalPrice.add(money);
+        counter++;
+        if(counter==12) {
+            age++;
+            counter=0;
+        }
+
+    }
+
 }
