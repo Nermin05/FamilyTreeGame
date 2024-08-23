@@ -6,6 +6,7 @@ public class ImagePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(Entity.type1Girl5, Entity.screenWidth/2-Entity.imgDiameter/2, 0, Entity.imgDiameter, Entity.imgDiameter, this);
         int diameter = 100;
         int x = (getWidth() - diameter) / 2;
         int y = (getHeight() - diameter) / 2;
