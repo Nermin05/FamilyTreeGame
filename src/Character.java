@@ -13,8 +13,9 @@ public class Character {
     private BufferedImage image;
     private Character spouse;
     private Set<Character> children;
+    private int height;
 
-    public Character(BigDecimal money, int age, Education education, char gender, String name, BufferedImage image, Character spouse) {
+    public Character(BigDecimal money, int age, Education education, char gender, String name, BufferedImage image, Character spouse,int height) {
         this.money = money;
         if (age < 18) {
             age = 18;
@@ -25,6 +26,7 @@ public class Character {
         this.name = name;
         this.image = image;
         this.spouse = spouse;//dating,lover,engage,marriage,enum
+        this.height=height;
     }
 
     public Character(BigDecimal money, String name, BufferedImage image) {
@@ -33,6 +35,14 @@ public class Character {
         this.name = name;
         this.image = image;
         defineImg();
+    }
+
+    public Character getSpouse() {
+        return spouse;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public void defineImg() {
@@ -117,9 +127,7 @@ public class Character {
         if (counter == 12) {
             age++;
             counter = 0;
-            if ((int) (Math.random() * 200) < age) {
-                //olum
-            }
+            //img
             if (gender == 'F') {
                 if ((int) (Math.random() * 2) == 1) {
                     if (age > 5) {
@@ -131,17 +139,21 @@ public class Character {
             } else {
                 this.image = Entity.type1Boy10;
             }
+            //death
+            if ((int) (Math.random() * 200) < age) {
+                //olum
+            }
         }
         if (spouse == null && age > 18) {
             if ((int) (Math.random() * 24) == 1) {
                 //ask for dating
             }
         }
+        //child
         if (spouse != null) {
             //child
         }
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -149,7 +161,6 @@ public class Character {
         Character character = (Character) o;
         return age == character.age && gender == character.gender && counter == character.counter && Objects.equals(money, character.money) && education == character.education && Objects.equals(name, character.name) && Objects.equals(image, character.image) && Objects.equals(spouse, character.spouse) && Objects.equals(children, character.children);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(money, age, education, gender, name, image, spouse, children, counter);

@@ -19,6 +19,7 @@ public class Entity {
     public static BufferedImage type1Boy10;
     public static BufferedImage type1Boy25;
     public static BufferedImage type1Boy40;
+    public static BufferedImage background;
 
     static {
         try {
@@ -32,6 +33,7 @@ public class Entity {
             type1Boy10 = ImageIO.read(new File("src\\assets\\tenSariBoy.png"));
             type1Boy25 = ImageIO.read(new File("src\\assets\\twentyFiveBoySari.png"));
             type1Boy40 = ImageIO.read(new File("src\\assets\\fourtyBoySari.png"));
+            background=ImageIO.read(new File("src\\assets\\img.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
