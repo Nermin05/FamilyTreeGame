@@ -82,6 +82,9 @@ public class Character {
     }
 
     public char getGender() {
+
+
+
         return gender;
     }
 

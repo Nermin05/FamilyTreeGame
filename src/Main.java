@@ -21,12 +21,6 @@ public class Main {
         jFrame.setLocationRelativeTo(null);
         jFrame.setVisible(true);
         jFrame.add(imagePanel);
-    }
-    public void wait(int second) {
-        try {
-            Thread.sleep(second);
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
-        }
+        imagePanel.gameStart();
     }
 }
