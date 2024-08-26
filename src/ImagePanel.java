@@ -40,8 +40,8 @@ public class ImagePanel extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 5; j++) {
                 g.drawImage(Entity.background, i * 150, j * 150, 150, 150, this);
             }
         }

@@ -9,7 +9,7 @@ public class Main {
     public static List<Character> characterList=new ArrayList<>();
     public static void main(String[] args) {
         mainChar.setName(mainChar.getGender()=='F'?"Olivia":"Baki");
-        mainChar.setImage(mainChar.getGender()=='F'?Entity.type1Girl15:Entity.type1Boy25);
+        mainChar.setImage(mainChar.getGender()=='F'?Entity.type1Girl18:Entity.type1Boy18);
         characterList.add(mainChar);
         JFrame jFrame = new JFrame();
         ImagePanel imagePanel = new ImagePanel();
