@@ -19,7 +19,8 @@ public class Main {
         jFrame.setLocationRelativeTo(null);
         jFrame.setVisible(true);
         jFrame.add(imagePanel);
-
+        JLabel jLabel=new JLabel("Salam");
+imagePanel.add(jLabel);
     }
     public void wait(int second) {
         try {

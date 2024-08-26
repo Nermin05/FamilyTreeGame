@@ -8,7 +8,6 @@ public class Entity {
     public static int imgDiameter = 150;
     public static int screenWidth = 1000;
     public static int screenHeight = 750;
-
     public static BufferedImage type1Girl5;
     public static BufferedImage type1Girl15;
     public static BufferedImage type1Girl30;
