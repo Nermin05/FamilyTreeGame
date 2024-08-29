@@ -7,36 +7,35 @@ import java.awt.geom.Ellipse2D;
 public class ImagePanel extends JPanel implements Runnable {
     private Point initialClick;
     private Thread thread;
-    private int counter;
+    private int imgX, imgY,xMoved,yMoved,lastX,lastY;
     public ImagePanel() {
-        // Add mouse listeners to enable dragging of the panel
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 initialClick = e.getPoint();
             }
-
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                lastX=imgX;
+                lastY=imgY;
+            }
             @Override
             public void mouseDragged(MouseEvent e) {
-                // Get the current location of the panel
                 int thisX = getLocation().x;
                 int thisY = getLocation().y;
 
-                // Determine how much the mouse moved since the initial click
-                int xMoved = e.getX() - initialClick.x;
-                int yMoved = e.getY() - initialClick.y;
+                 xMoved = lastX+(e.getX() - initialClick.x);
+                 yMoved = lastY+(e.getY() - initialClick.y);
 
-                // Move the panel to its new location
-                counter = thisX + xMoved;
-                //int Y = thisY + yMoved;
+                imgX = thisX + xMoved;
+                imgY = thisY + yMoved;
                 setLocation(0, 0);
             }
         };
-
         addMouseListener(mouseAdapter);
         addMouseMotionListener(mouseAdapter);
     }
-    private int x;
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -45,25 +44,26 @@ public class ImagePanel extends JPanel implements Runnable {
                 g.drawImage(Entity.background, i * 150, j * 150, 150, 150, this);
             }
         }
-        x = Main.mainChar.getSpouse() == null ? counter+(getWidth() - Entity.imgDiameter) / 2 : counter+getWidth() / 2 - Entity.imgDiameter;
-        int y = Main.mainChar.getHeight() * 200;
+        int x = imgX + (getWidth() / 2 - (Main.mainChar.getSpouse() == null ? Entity.imgDiameter / 2 : Entity.imgDiameter));
+        int y = imgY + Main.mainChar.getHeight() * 200;
         g.drawImage(Main.mainChar.getImage(), x, y, Entity.imgDiameter, Entity.imgDiameter, this);
-
     }
 
     public void gameStart() {
         thread = new Thread(this);
         thread.start();
     }
-    private int update(){
+
+    private int update() {
         return 0;
     }
+
     @Override
     public void run() {
         while (thread != null) {
-            try{
-                Thread.sleep(1000/60);
-            }catch (Exception e){
+            try {
+                Thread.sleep(1000 / 60);
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
             repaint();
