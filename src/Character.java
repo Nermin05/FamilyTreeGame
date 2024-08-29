@@ -82,9 +82,6 @@ public class Character {
     }
 
     public char getGender() {
-
-
-
         return gender;
     }
 
@@ -119,6 +116,7 @@ public class Character {
     private int counter = 0;
 
     public void aMonthPasses() {
+        System.out.println("Char is started");
         if (education == null) {
             if (age > 6 && age < 17) {
                 //ask user
@@ -149,7 +147,6 @@ public class Character {
         }
         if (spouse == null && age > 18) {
             if ((int) (Math.random() * 24) == 1) {
-                //ask for dating
             }
         }
         //child
