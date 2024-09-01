@@ -49,15 +49,17 @@ public class ImagePanel extends JPanel implements Runnable {
         int x = imgX + (getWidth() / 2 - (Main.mainChar.getSpouse() == null ? Entity.imgDiameter / 2 : Entity.imgDiameter));
         int y = imgY + Main.mainChar.getHeight() * 200;
         g.drawImage(Main.mainChar.getImage(), x, y, Entity.imgDiameter, Entity.imgDiameter, this);
+
+
+        Font font = new Font("Arial", Font.PLAIN, 25);
+        g.setFont(font);
+        g.setColor(Color.white);
+        g.drawString("$"+Main.totalPrice.toString(), 950-Main.totalPrice.toString().length()*14, 40);
     }
 
     public void gameStart() {
         thread = new Thread(this);
         thread.start();
-    }
-
-    private int update() {
-        return 0;
     }
 
     @Override
