@@ -25,7 +25,5 @@ public class Main {
 
         imagePanel.gameStart();
 
-        TimeArrowForChar timeArrowForChar=new TimeArrowForChar();
-        timeArrowForChar.gameStartForChar();
     }
 }
