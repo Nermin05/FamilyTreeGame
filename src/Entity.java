@@ -9,6 +9,8 @@ public class Entity {
     public static int screenHeight = 750;
     public static BufferedImage background;
     public static BufferedImage nameBlock;
+    public static BufferedImage initialButton;
+    public static BufferedImage pushedButton;
     public static BufferedImage boy0;
     public static BufferedImage girl0;
     public static BufferedImage type1Boy5;
@@ -50,6 +52,8 @@ public class Entity {
         try {
             background = ImageIO.read(new File("src\\assets\\Other\\Background.png"));
             nameBlock = ImageIO.read(new File("src\\assets\\Other\\NameBlock.png"));
+            initialButton=ImageIO.read(new File("src\\assets\\Other\\InitialButton.png"));
+            pushedButton=ImageIO.read(new File("src\\assets\\Other\\PushedButton.png"));
             boy0 = ImageIO.read(new File("src\\assets\\Babies\\Boy0.png"));
             girl0 = ImageIO.read(new File("src\\assets\\Babies\\Girl0.png"));
             type1Boy5 = ImageIO.read(new File("src\\assets\\Type1Boy\\Type1Boy5.png"));

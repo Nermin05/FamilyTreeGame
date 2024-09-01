@@ -7,7 +7,6 @@ public class ImagePanel extends JPanel implements Runnable {
     private Point initialClick;
     private Thread thread;
     private int imgX, imgY, xMoved, yMoved, lastX, lastY;
-
     public ImagePanel() {
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
@@ -41,6 +40,7 @@ public class ImagePanel extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 5; j++) {
                 g.drawImage(Entity.background, i * 150, j * 150, 150, 150, this);

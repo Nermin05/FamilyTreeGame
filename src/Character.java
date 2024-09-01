@@ -164,9 +164,23 @@ public class Character {
             }
             //death
             if ((int) (Math.random() * 200) < age) {
-                //olum
+               // if (CharacterType.TYPE2GIRL.equals(characterType)) {
+                    if (age >= 5&&age<10) {
+                        this.image = Entity.type2Girl5RIP;
+                    } else if (age>=10&&age<18) {
+                        this.image=Entity.type2Girl10RIP;
+                    }else if (age>=18&&age<25) {
+                        this.image=Entity.type2Girl18RIP;
+                    }else if (age>=25&&age<40) {
+                        this.image=Entity.type2Girl25RIP;
+                    }else if (age>=40&&age<60) {
+                        this.image=Entity.type2Girl40RIP;
+                    }else{
+                        this.image=Entity.type2Girl60RIP;
+                    }
+                }
+
             }
-        }
         if (spouse == null && age > 18) {
             if ((int) (Math.random() * 24) == 1) {
             }
