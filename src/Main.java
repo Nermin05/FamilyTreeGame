@@ -21,6 +21,6 @@ public class Main {
         jFrame.setLocationRelativeTo(null);
         jFrame.setVisible(true);
         jFrame.add(imagePanel);
-       // imagePanel.gameStart();
+        imagePanel.gameStart();
     }
 }

@@ -6,30 +6,32 @@ import java.awt.event.MouseEvent;
 public class ImagePanel extends JPanel implements Runnable {
     private Point initialClick;
     private Thread thread;
-    private int imgX, imgY;
     private final double speedFactor = 0.01;
-
+    private int imgX, imgY,xMoved,yMoved,lastX,lastY;
     public ImagePanel() {
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 initialClick = e.getPoint();
             }
-
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                lastX=imgX;
+                lastY=imgY;
+            }
             @Override
             public void mouseDragged(MouseEvent e) {
-                int thisX = imgX;
-                int thisY = imgY;
+                int thisX = getLocation().x;
+                int thisY = getLocation().y;
 
-                int xMoved = (int) ((e.getX() - initialClick.x) * speedFactor);
-                int yMoved = (int) ((e.getY() - initialClick.y) * speedFactor);
+                 xMoved = lastX+(e.getX() - initialClick.x);
+                 yMoved = lastY+(e.getY() - initialClick.y);
 
                 imgX = thisX + xMoved;
                 imgY = thisY + yMoved;
-                repaint();
+                setLocation(0, 0);
             }
         };
-
         addMouseListener(mouseAdapter);
         addMouseMotionListener(mouseAdapter);
     }
@@ -38,7 +40,6 @@ public class ImagePanel extends JPanel implements Runnable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Arkaplanı çiz
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 5; j++) {
                 g.drawImage(Entity.background, i * 150, j * 150, 150, 150, this);
@@ -47,13 +48,16 @@ public class ImagePanel extends JPanel implements Runnable {
 
         int x = imgX + (getWidth() / 2 - (Main.mainChar.getSpouse() == null ? Entity.imgDiameter / 2 : Entity.imgDiameter));
         int y = imgY + Main.mainChar.getHeight() * 200;
-
         g.drawImage(Main.mainChar.getImage(), x, y, Entity.imgDiameter, Entity.imgDiameter, this);
     }
 
     public void gameStart() {
         thread = new Thread(this);
         thread.start();
+    }
+
+    private int update() {
+        return 0;
     }
 
     @Override
