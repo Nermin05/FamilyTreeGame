@@ -9,6 +9,16 @@ public class Main {
     public static List<Character> characterList=new ArrayList<>();
     public static ImagePanel imagePanel = new ImagePanel();
     public static boolean gameIsFlow=true;
+    public static Thread threadForCharacter=new Thread(()->{
+        while (gameIsFlow) {
+            try {
+                Thread.sleep(5000);
+                Main.characterList.forEach(Character::aMonthPasses);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    });
     public static void main(String[] args) {
         mainChar.setName(mainChar.getGender()=='F'?"Olivia":"Baki");
         mainChar.setImage(mainChar.getGender()=='F'?Entity.type1Girl18:Entity.type1Boy18);
@@ -25,17 +35,6 @@ public class Main {
 
         imagePanel.gameStart();
 
-        Thread threadForCharacter=new Thread(()->{
-            while (gameIsFlow) {
-                try {
-                    Thread.sleep(5000);
-                    Main.characterList.forEach(Character::aMonthPasses);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        });
         threadForCharacter.start();
-
     }
 }

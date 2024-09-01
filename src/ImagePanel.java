@@ -7,6 +7,9 @@ public class ImagePanel extends JPanel implements Runnable {
     private Point initialClick;
     private Thread thread;
     private int imgX, imgY, xMoved, yMoved, lastX, lastY;
+    public boolean askQuestion=true;
+    public String askString;
+
     public ImagePanel() {
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
@@ -56,6 +59,10 @@ public class ImagePanel extends JPanel implements Runnable {
         g.setFont(font);
         g.setColor(Color.white);
         g.drawString("$" + Main.totalPrice.toString(), 950 - Main.totalPrice.toString().length() * 14, 40);
+
+        if (askQuestion){
+            ask(g,askString);
+        }
     }
 
     public void gameStart() {
@@ -73,5 +80,20 @@ public class ImagePanel extends JPanel implements Runnable {
             }
             repaint();
         }
+    }
+
+    public void ask(Graphics g,String s){
+        g.drawImage(Entity.whiteBackground, 150, 150, 700, 450, this);
+        g.setColor(Color.BLACK);
+        for (int i=0;i<s.length()/51;i++){
+                g.drawString( s.substring(i*51,(i+1)*51), 170 , i*35+190);
+            if (i==s.length()/51-1) g.drawString( s.substring((i+1)*51), 170 , (i+1)*35+190);
+        }
+        g.drawImage(Entity.initialButton, 230, 500, 200, 70, this);
+        g.drawImage(Entity.initialButton, 570, 500, 200, 70, this);
+        g.drawString( "Yes", 310 , 540);
+        g.drawString( "No", 650 , 540);
+
+
     }
 }
