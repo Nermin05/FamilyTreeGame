@@ -47,6 +47,7 @@ public class Entity {
     public static BufferedImage type2Girl25RIP;
     public static BufferedImage type2Girl40RIP;
     public static BufferedImage type2Girl60RIP;
+    public static BufferedImage whiteBackground;
 
     static {
         try {
@@ -73,7 +74,8 @@ public class Entity {
             type2Girl40 = ImageIO.read(new File("src\\assets\\Type2Girl\\Type2Girl40.png"));
             type2Girl60 = ImageIO.read(new File("src\\assets\\Type2Girl\\Type2Girl60.png"));
             boy0RIP = ImageIO.read(new File("src\\assets\\Babies\\Boy0RIP.png"));
-            girl0RIP = ImageIO.read(new File("src\\assets\\Babies\\Girl0Rip.png"));
+            girl0RIP = ImageIO.read(new File("src\\assets\\Babies\\Girl0RIP.png"));
+            girl0RIP = ImageIO.read(new File("src\\assets\\Babies\\Girl0RIP.png"));
             type1Boy5RIP = ImageIO.read(new File("src\\assets\\Type1Boy\\Type1Boy5RIP.png"));
             type1Boy10RIP = ImageIO.read(new File("src\\assets\\Type1Boy\\Type1Boy10RIP.png"));
             type1Boy18RIP = ImageIO.read(new File("src\\assets\\Type1Boy\\Type1Boy18RIP.png"));
@@ -90,7 +92,7 @@ public class Entity {
             type2Girl25RIP = ImageIO.read(new File("src\\assets\\Type2Girl\\Type2Girl25RIP.png"));
             type2Girl40RIP = ImageIO.read(new File("src\\assets\\Type2Girl\\Type2Girl40RIP.png"));
             type2Girl60RIP = ImageIO.read(new File("src\\assets\\Type2Girl\\Type2Girl60RIP.png"));
-
+            whiteBackground=ImageIO.read(new File("src\\assets\\Other\\whiteBackground.jpg"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

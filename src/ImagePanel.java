@@ -8,24 +8,27 @@ public class ImagePanel extends JPanel implements Runnable {
     private Thread thread;
     private final double speedFactor = 0.01;
     private int imgX, imgY,xMoved,yMoved,lastX,lastY;
+
     public ImagePanel() {
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 initialClick = e.getPoint();
             }
+
             @Override
             public void mouseReleased(MouseEvent e) {
-                lastX=imgX;
-                lastY=imgY;
+                lastX = imgX;
+                lastY = imgY;
             }
+
             @Override
             public void mouseDragged(MouseEvent e) {
                 int thisX = getLocation().x;
                 int thisY = getLocation().y;
 
-                 xMoved = lastX+(e.getX() - initialClick.x);
-                 yMoved = lastY+(e.getY() - initialClick.y);
+                xMoved = lastX + (e.getX() - initialClick.x);
+                yMoved = lastY + (e.getY() - initialClick.y);
 
                 imgX = thisX + xMoved;
                 imgY = thisY + yMoved;
@@ -54,7 +57,7 @@ public class ImagePanel extends JPanel implements Runnable {
         Font font = new Font("Arial", Font.PLAIN, 25);
         g.setFont(font);
         g.setColor(Color.white);
-        g.drawString("$"+Main.totalPrice.toString(), 950-Main.totalPrice.toString().length()*14, 40);
+        g.drawString("$" + Main.totalPrice.toString(), 950 - Main.totalPrice.toString().length() * 14, 40);
     }
 
     public void gameStart() {
