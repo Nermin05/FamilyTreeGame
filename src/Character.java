@@ -9,14 +9,13 @@ public class Character {
     private Education education;
     private char gender;
     private String name;
-    private double happiness;
     private BufferedImage image;
     private Character spouse;
     private Set<Character> children;
     private int height;
     private CharacterType characterType;
 
-    public Character(BigDecimal money, int age, Education education, char gender, String name, BufferedImage image, Character spouse, int height) {
+    public Character(BigDecimal money, int age, Education education, char gender, Character spouse, int height) {
         this.money = money;
         if (age < 18) {
             age = 18;
@@ -24,20 +23,19 @@ public class Character {
         this.age = age;
         this.education = education;
         this.gender = gender;
-        this.name = name;
-        this.image = image;
+        this.name = gender=='F'?"Olivia":"Baki";
         this.spouse = spouse;//dating,lover,engage,marriage,enum
         this.height = height;
         this.characterType = gender == 'F' ? CharacterType.TYPE2GIRL : CharacterType.TYPE1BOY;
+        defineImg();
     }
 
-    public Character(BigDecimal money, String name, BufferedImage image) {
+    public Character(BigDecimal money) {
         this.money = money;
         this.gender = (int) (Math.random() * 2) == 1 ? 'F' : 'M';
-        this.name = name;
-        this.image = image;
-        defineImg();
+        this.name =gender=='F'?"Olivia":"Baki";
         this.characterType = gender == 'F' ? CharacterType.TYPE2GIRL : CharacterType.TYPE1BOY;
+        defineImg();
     }
 
     public Character getSpouse() {
@@ -50,62 +48,62 @@ public class Character {
 
     public void defineImg() {
         if (gender == 'F') {
-            if ((int) (Math.random() * 2) == 1) {
-                this.image = Entity.type1Girl5;
-            } else {
-                this.image = Entity.type2Girl10;
+            if (CharacterType.TYPE2GIRL.equals(characterType)) {
+                if (age < 5) {
+                    this.image=Entity.girl0;
+                } else {
+                    setImgForAgeBoy();
+                }
             }
         } else {
-            this.image = Entity.type1Boy10;
+            if (CharacterType.TYPE1BOY.equals(characterType)) {
+                if (age < 5) {
+                    this.image=Entity.boy0;
+                } else {
+                    setImgForAgeGirl();
+                }
+            }
         }
     }
 
-    public BigDecimal getMoney() {
-        return money;
+    private void setImgForAgeGirl() {
+        if (age >= 5 && age < 10) {
+            this.image = Entity.type1Boy5;
+        } else if (age >= 10 && age < 18) {
+            this.image = Entity.type1Boy10;
+        } else if (age >= 18 && age < 25) {
+            this.image = Entity.type1Boy18;
+        } else if (age >= 25 && age < 40) {
+            this.image = Entity.type1Boy25;
+        } else if (age >= 40 && age < 60) {
+            this.image = Entity.type1Boy40;
+        } else {
+            this.image = Entity.type1Boy60;
+        }
     }
 
-    public void setMoney(BigDecimal money) {
-        this.money = money;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Education getEducation() {
-        return education;
-    }
-
-    public void setEducation(Education education) {
-        this.education = education;
+    private void setImgForAgeBoy() {
+        if (age >= 5 && age < 10) {
+            this.image = Entity.type2Girl5;
+        } else if (age >= 10 && age < 18) {
+            this.image = Entity.type2Girl10;
+        } else if (age >= 18 && age < 25) {
+            this.image = Entity.type2Girl18;
+        } else if (age >= 25 && age < 40) {
+            this.image = Entity.type2Girl25;
+        } else if (age >= 40 && age < 60) {
+            this.image = Entity.type2Girl40;
+        } else {
+            this.image = Entity.type2Girl60;
+        }
     }
 
     public char getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
-        this.gender = gender;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getHappiness() {
-        return happiness;
-    }
-
-    public void setHappiness(double happiness) {
-        this.happiness = happiness;
     }
 
     public BufferedImage getImage() {
@@ -135,63 +133,94 @@ public class Character {
             counter = 0;
             if (gender == 'F') {
                 if (CharacterType.TYPE2GIRL.equals(characterType)) {
-                    if (age >= 5 && age < 10) {
-                        this.image = Entity.type2Girl5;
-                    } else if (age >= 10 && age < 18) {
-                        this.image = Entity.type2Girl10;
-                    } else if (age >= 18 && age < 25) {
-                        this.image = Entity.type2Girl18;
-                    } else if (age >= 25 && age < 40) {
-                        this.image = Entity.type2Girl25;
-                    } else if (age >= 40 && age < 60) {
-                        this.image = Entity.type2Girl40;
-                    } else {
-                        this.image = Entity.type2Girl60;
-                    }
+                    setImgForAgeBoy();
                 }
             } else {
                 if (CharacterType.TYPE1BOY.equals(characterType)) {
-                    if (age >= 5 && age < 10) {
-                        this.image = Entity.type1Boy5;
-                    } else if (age >= 10 && age < 18) {
-                        this.image = Entity.type1Boy10;
-                    } else if (age >= 18 && age < 25) {
-                        this.image = Entity.type1Boy18;
-                    } else if (age >= 25 && age < 40) {
-                        this.image = Entity.type1Boy25;
-                    } else if (age >= 40 && age < 60) {
-                        this.image = Entity.type1Boy40;
-                    } else {
-                        this.image = Entity.type1Boy60;
-                    }
+                    setImgForAgeGirl();
                 }
             }
-            //death
             if ((int) (Math.random() * 200) < age) {
-                if (CharacterType.TYPE2GIRL.equals(characterType)) {
-                    if (age >= 5 && age < 10) {
-                        this.image = Entity.type2Girl5RIP;
-                    } else if (age >= 10 && age < 18) {
-                        this.image = Entity.type2Girl10RIP;
-                    } else if (age >= 18 && age < 25) {
-                        this.image = Entity.type2Girl18RIP;
-                    } else if (age >= 25 && age < 40) {
-                        this.image = Entity.type2Girl25RIP;
-                    } else if (age >= 40 && age < 60) {
-                        this.image = Entity.type2Girl40RIP;
-                    } else {
-                        this.image = Entity.type2Girl60RIP;
+                if (gender == 'F') {
+                    if (CharacterType.TYPE2GIRL.equals(characterType)) {
+                        if (age >= 5 && age < 10) {
+                            this.image = Entity.type2Girl5RIP;
+                        } else if (age >= 10 && age < 18) {
+                            this.image = Entity.type2Girl10RIP;
+                        } else if (age >= 18 && age < 25) {
+                            this.image = Entity.type2Girl18RIP;
+                        } else if (age >= 25 && age < 40) {
+                            this.image = Entity.type2Girl25RIP;
+                        } else if (age >= 40 && age < 60) {
+                            this.image = Entity.type2Girl40RIP;
+                        } else {
+                            this.image = Entity.type2Girl60RIP;
+                        }
+                    }
+                } else {
+                    if (CharacterType.TYPE1BOY.equals(characterType)) {
+                        if (age >= 5 && age < 10) {
+                            this.image = Entity.type1Boy5RIP;
+                        } else if (age >= 10 && age < 18) {
+                            this.image = Entity.type1Boy10RIP;
+                        } else if (age >= 18 && age < 25) {
+                            this.image = Entity.type1Boy18RIP;
+                        } else if (age >= 25 && age < 40) {
+                            this.image = Entity.type1Boy25RIP;
+                        } else if (age >= 40 && age < 60) {
+                            this.image = Entity.type1Boy40RIP;
+                        } else {
+                            this.image = Entity.type1Boy60RIP;
+                        }
                     }
                 }
             }
         }
         if (spouse == null && age > 18) {
             if ((int) (Math.random() * 24) == 1) {
+                ImagePanel.askQuestion = true;
+                Main.gameIsFlow = false;
+
+                int age = this.age + (int) (Math.random() * 8) - 4;
+                Education education = (int) (Math.random() * 2) == 1 ? Education.DO_NOT_GO_SCHOOL : Education.GRADUATED;
+                char gender = this.gender == 'F' ? 'M' : 'F';
+
+                double happiness = 100;
+                Character spouse=this;
+                int height=this.height;
+                BigDecimal money=BigDecimal.valueOf(height* 100L +education.getPay()+200);
+
+                //ask
+//                if (answerIsTrue) {
+//                    this.spouse = new Character(money, age, education, gender, spouse, height);
+//                    Main.characterList.add(this.spouse);
+//                }
+
+                Main.gameIsFlow = true;
+                Main.threadForCharacter.start();
             }
         }
         //child
-        if (spouse != null) {
-            //child
+        if (spouse != null&&age<40&&this.spouse.age<40) {
+            if ((int) (Math.random() * this.age-5) == 1){
+                ImagePanel.askQuestion = true;
+                Main.gameIsFlow = false;
+
+                BigDecimal money=BigDecimal.valueOf(-(height* 100L +200));
+                String name = gender == 'F' ? "Olivia" : "Baki";
+
+
+//                 ask
+//                if (answerIsTrue) {
+//                   Character child=new Character(money);
+//                    this.children.add( child);
+//                    this.spouse.children.add(child);
+//                    Main.characterList.add(this.spouse);
+//                }
+
+                Main.gameIsFlow = true;
+                Main.threadForCharacter.start();
+            }
         }
     }
 

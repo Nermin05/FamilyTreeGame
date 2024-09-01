@@ -7,8 +7,8 @@ public class ImagePanel extends JPanel implements Runnable {
     private Point initialClick;
     private Thread thread;
     private int imgX, imgY, xMoved, yMoved, lastX, lastY;
-    public boolean askQuestion=true;
-    public String askString;
+    public static boolean askQuestion=true;
+    public String askString="Information";
 
     public ImagePanel() {
         MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -52,7 +52,13 @@ public class ImagePanel extends JPanel implements Runnable {
 
         int x = imgX + (getWidth() / 2 - (Main.mainChar.getSpouse() == null ? Entity.imgDiameter / 2 : Entity.imgDiameter));
         int y = imgY + Main.mainChar.getHeight() * 200;
-        g.drawImage(Main.mainChar.getImage(), x, y, Entity.imgDiameter, Entity.imgDiameter, this);
+        Main.characterList.forEach(
+                character -> {
+                    g.drawImage(
+                            character.getImage(), x, character.getHeight()*190+y, Entity.imgDiameter, Entity.imgDiameter, this
+                    );
+                });
+
 
 
         Font font = new Font("Arial", Font.PLAIN, 25);
@@ -63,6 +69,8 @@ public class ImagePanel extends JPanel implements Runnable {
         if (askQuestion){
             ask(g,askString);
         }
+        g.drawImage(Main.mainChar.getImage(), x, y, Entity.imgDiameter, Entity.imgDiameter, this);
+
     }
 
     public void gameStart() {
@@ -83,7 +91,7 @@ public class ImagePanel extends JPanel implements Runnable {
     }
 
     public void ask(Graphics g,String s){
-        g.drawImage(Entity.whiteBackground, 150, 150, 700, 450, this);
+        g.drawImage(Entity.whiteBackgroundBigFrame, 150, 150, 700, 450, this);
         g.setColor(Color.BLACK);
         for (int i=0;i<s.length()/51;i++){
                 g.drawString( s.substring(i*51,(i+1)*51), 170 , i*35+190);
