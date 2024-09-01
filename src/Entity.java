@@ -48,6 +48,9 @@ public class Entity {
     public static BufferedImage type2Girl40RIP;
     public static BufferedImage type2Girl60RIP;
     public static BufferedImage whiteBackground;
+    public static BufferedImage whiteBackgroundNoFrame;
+    public static BufferedImage whiteBackgroundThinFrame;
+    public static BufferedImage whiteBackgroundBigFrame;
 
     static {
         try {
@@ -93,6 +96,9 @@ public class Entity {
             type2Girl40RIP = ImageIO.read(new File("src\\assets\\Type2Girl\\Type2Girl40RIP.png"));
             type2Girl60RIP = ImageIO.read(new File("src\\assets\\Type2Girl\\Type2Girl60RIP.png"));
             whiteBackground=ImageIO.read(new File("src\\assets\\Other\\whiteBackground.jpg"));
+            whiteBackgroundNoFrame = ImageIO.read(new File("src\\assets\\Other\\WhiteBackgroundNoFrame.png"));
+            whiteBackgroundThinFrame = ImageIO.read(new File("src\\assets\\Other\\WhiteBackgroundThinFrame.png"));
+            whiteBackgroundBigFrame = ImageIO.read(new File("src\\assets\\Other\\WhiteBackgroundBigFrame.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
